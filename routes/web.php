@@ -18,3 +18,4 @@ Route::get('/', function () {
 });
 
 Route::resource('questionarios', 'QuestionarioController');
+Route::resource('questoes', 'QuestaoController');
