@@ -1,11 +1,12 @@
 <form action="{{route('questionarios.store')}}" method="post">
     <div class="form-group">
-        <label for="nome">Nome:</label>
-        <input type="text" name="nome" id="nome" class="form-control">
+        <label for="nome">Nome</label>
+        <input type="text" class="form-control" id="nome"  placeholder="Nome do Questionario">
     </div>
     <div class="form-group">
-        <label for="pontuacao">Pontuação Maxima:</label>
-        <input type="text" name="pontuacao" id="pontuacao" class="form-control">
+        <label for="pontuacao">Pontuação Maxima</label>
+        <input type="text" class="form-control" id="pontuacao" placeholder="total de pontos">
     </div>
-    <button class="btn btn-lg btn-sucess">Cadastrar Teste</button>
+
+    <button type="submit" class="btn btn-primary">Cadastrar</button>
 </form>
