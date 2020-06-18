@@ -1,8 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+
+use App\Questionario;
 
 class QuestionarioController extends Controller
 {
@@ -13,7 +16,7 @@ class QuestionarioController extends Controller
      */
     public function index()
     {
-        //
+        dd(Questionario::all());
     }
 
     /**
@@ -34,12 +37,11 @@ class QuestionarioController extends Controller
      */
     public function store(Request $request)
     {
-        echo "Questionario Adicionado";
+        $data = $request->all();
+        
+        dd(Questionario::create($data));
 
-        if(empty($request->nome) or ($request->pontuacao) )
-        {
-            return back()->withInput();
-        }
+        return back();
     }
 
     /**
@@ -50,7 +52,7 @@ class QuestionarioController extends Controller
      */
     public function show($id)
     {
-        //
+        dd(Post::findOrFail($id));
     }
 
     /**
