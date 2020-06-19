@@ -2,11 +2,11 @@
     @csrf
     <div class="form-group">
         <label for="nome">Nome: </label><br>
-        <input type="text" name="nome" id="nome" class="form-control"><br>
+        <input type="text" name="nome" id="nome" class="form-control" value="{{old('nome')}}"><br>
     </div>
     <div class="form-group">
         <label for="pontuacao">Pontuação Maxima: </label><br>
-        <input type="text" name="pontuacao" id="pontuacao" class="form-control"><br>
+        <input type="text" name="pontuacao" id="pontuacao" class="form-control" value="{{old('pontuacao')}}"><br>
     </div>
-    <button type="submit" class="btn btn-primary">Cadastrar</button>
+    <button type="submit" class="btn btn-primary">Cadastrar Questionário</button>
 </form>

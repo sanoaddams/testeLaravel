@@ -25,16 +25,16 @@
         <label for="respostaE">Resposta E</label><br>
         <input type="text" name="respostaE" value="{{$questoes->respostaE}}" id="respostaE" class="form-control"><br>
     </div>
-    <div class="form-group">
-        <select name="correta" id="correta">
-            <option value="{{$questoes->a}}">A</option>
-            <option value="{{$questoes->b}}">B</option>
-            <option value="{{$questoes->c}}">C</option>
-            <option value="{{$questoes->d}}">D</option>
-            <option value="{{$questoes->e}}">E</option>
-        </select>
-    </div>
-    <button class="btn btn-lg btn-sucess">Cadastrar Questão</button>
+    <div class="form-group">       
+        <select name="correta" id="correta" >
+            <option value="a" {{($questoes->correta == 'a')?'selected':''}}>A</option>
+            <option value="b" {{($questoes->correta == 'b')?'selected':''}}>B</option>
+            <option value="c" {{($questoes->correta == 'c')?'selected':''}}>C</option>
+            <option value="d" {{($questoes->correta == 'd')?'selected':''}}>D</option>
+            <option value="e" {{($questoes->correta == 'e')?'selected':''}}>E</option>
+        </select>       
+     </div>
+    <button class="btn btn-lg btn-sucess">Atualizar Questão</button>
 </form>
 
 <form action="{{route('questoes.destroy',['questo' => $questoes->id ])}}" method="POST">

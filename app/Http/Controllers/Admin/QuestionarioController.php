@@ -52,7 +52,7 @@ class QuestionarioController extends Controller
      */
     public function show($id)
     {
-        dd(Post::findOrFail($id));
+        dd(Questionario::findOrFail($id));
     }
 
     /**
@@ -63,7 +63,9 @@ class QuestionarioController extends Controller
      */
     public function edit($id)
     {
-        //
+        $questionario = Questionario::findOrFail($id);
+
+        return view('questionarios.edit')->withQuestionario($questionario);
     }
 
     /**
@@ -75,7 +77,11 @@ class QuestionarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+       
+       $questionario = Questionario::findOrFail($id);
+
+       dd($questionario->update($data));
     }
 
     /**
@@ -86,6 +92,8 @@ class QuestionarioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $questionario = Questionario::findOrFail($id);
+
+        dd($questionario->delete());
     }
 }

@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Questoe extends Model
+class Questao extends Model
 {
-
+    protected $table = 'questoes';
 
     protected $fillable = [
         'questionario_id',

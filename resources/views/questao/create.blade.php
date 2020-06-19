@@ -26,13 +26,13 @@
         <input type="text" name="respostaE" value="{{old('respostaE')}}" id="respostaE" class="form-control"><br>
     </div>
     <div class="form-group">
-       <select name="correta" id="correta">
-           <option value="{{old('a')}}">A</option>
-           <option value="{{old('b')}}">B</option>
-           <option value="{{old('c')}}">C</option>
-           <option value="{{old('d')}}">D</option>
-           <option value="{{old('e')}}">E</option>
-       </select>
-    </div>
+        <select name="correta" id="correta" value="{{old('correta')}}">
+            <option value="a">A</option>
+            <option value="b">B</option>
+            <option value="c">C</option>
+            <option value="d">D</option>
+            <option value="e">E</option>
+        </select>
+     </div>
     <button class="btn btn-lg btn-sucess">Cadastrar Questão</button>
 </form>    

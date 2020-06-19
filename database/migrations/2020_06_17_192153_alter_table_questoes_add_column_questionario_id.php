@@ -16,7 +16,7 @@ class AlterTableQuestoesAddColumnQuestionarioId extends Migration
         Schema::table('questoes', function (Blueprint $table) {
             
             $table->unsignedBigInteger('questionario_id')->after('id');
-            $table->foreign('questionario_id')->references('id')->on('questionarios');
+            $table->foreign('questionario_id')->references('id')->on('questionarios')->onDelete('cascade');
         });
     }
 
@@ -29,7 +29,7 @@ class AlterTableQuestoesAddColumnQuestionarioId extends Migration
     {
         Schema::table('questoes', function (Blueprint $table) {
             $table->dropForeign('questoes_questionario_id_foreign');
-            $table->dropColumn('questinario_id');
+            $table->dropColumn('questionario_id');
         });
     }
 }

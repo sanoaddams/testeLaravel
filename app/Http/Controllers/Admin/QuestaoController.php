@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Questoe;
+use App\Questao;
 use Illuminate\Http\Request;
 
 class QuestaoController extends Controller
@@ -15,7 +15,7 @@ class QuestaoController extends Controller
      */
     public function index()
     {
-        dd(Questoe::all());
+        dd(Questao::all());
     }
 
     /**
@@ -41,7 +41,7 @@ class QuestaoController extends Controller
 
         $data['questionario_id'] = 1;
 
-        dd(Questoe::create($data));
+        dd(Questao::create($data));
 
         return back();
     }
@@ -54,7 +54,7 @@ class QuestaoController extends Controller
      */
     public function show($id)
     {
-        dd(Questoe::findOrFail($id));
+        dd(Questao::findOrFail($id));
     }
 
     /**
@@ -65,7 +65,7 @@ class QuestaoController extends Controller
      */
     public function edit($id)
     {
-        $questoes = Questoe::findOrFail($id);
+        $questoes = Questao::findOrFail($id);
         return view('questao.edit')->withQuestoes($questoes);
     }
 
@@ -79,8 +79,7 @@ class QuestaoController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->all();
-        $data['correta'] = 'b';
-        $questoes = Questoe::findOrFail($id);
+        $questoes = Questao::findOrFail($id);
         dd($questoes->update($data));
     }
 
@@ -92,7 +91,7 @@ class QuestaoController extends Controller
      */
     public function destroy($id)
     {
-        $questoes = Questoe::findOrFail();
+        $questoes = Questao::findOrFail($id);
         dd($questoes->delete());
     }
 }
