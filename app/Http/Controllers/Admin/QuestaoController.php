@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
+use App\Questoe;
 use Illuminate\Http\Request;
 
-class QuestionarioController extends Controller
+class QuestaoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +15,7 @@ class QuestionarioController extends Controller
      */
     public function index()
     {
-        //
+        dd(Questoe::all());
     }
 
     /**
@@ -23,7 +25,8 @@ class QuestionarioController extends Controller
      */
     public function create()
     {
-        return view('questionarios.create');
+        return view('questao.create');
+        
     }
 
     /**
@@ -34,12 +37,13 @@ class QuestionarioController extends Controller
      */
     public function store(Request $request)
     {
-        echo "Questionario Adicionado";
+        $data = $request->all();
 
-        if(empty($request->nome) or ($request->pontuacao) )
-        {
-            return back()->withInput();
-        }
+        $data['questionario_id'] = 1;
+
+        dd(Questoe::create($data));
+
+        return back();
     }
 
     /**
@@ -50,7 +54,7 @@ class QuestionarioController extends Controller
      */
     public function show($id)
     {
-        //
+        dd(Questoe::findOrFail($id));
     }
 
     /**
@@ -61,7 +65,8 @@ class QuestionarioController extends Controller
      */
     public function edit($id)
     {
-        //
+        $questoes = Questoe::findOrFail($id);
+        return view('questao.edit')->withQuestoes($questoes);
     }
 
     /**
@@ -73,7 +78,10 @@ class QuestionarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+        $data['correta'] = 'b';
+        $questoes = Questoe::findOrFail($id);
+        dd($questoes->update($data));
     }
 
     /**
@@ -84,6 +92,7 @@ class QuestionarioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $questoes = Questoe::findOrFail();
+        dd($questoes->delete());
     }
 }

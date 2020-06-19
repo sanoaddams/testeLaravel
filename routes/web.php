@@ -17,4 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('questionarios', 'QuestionarioController');
+Route::prefix('admin')->namespace('Admin')->group(function(){
+
+    Route::resource('questionarios', 'QuestionarioController');
+    Route::resource('questoes', 'QuestaoController');
+    
+});
+
