@@ -16,7 +16,8 @@ class QuestionarioController extends Controller
      */
     public function index()
     {
-        dd(Questionario::all());
+        $questionario = Questionario::all();
+        return view('questionarios.index')->withQuestionario($questionario);
     }
 
     /**

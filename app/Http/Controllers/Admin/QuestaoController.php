@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Questao;
+use App\Questionario;
 use Illuminate\Http\Request;
 
 class QuestaoController extends Controller
@@ -15,7 +16,9 @@ class QuestaoController extends Controller
      */
     public function index()
     {
-        dd(Questao::all());
+        //dd(Questao::all());
+        $questao = Questao::all();
+        return view('questao.index')->withQuestao($questao);
     }
 
     /**
@@ -25,7 +28,10 @@ class QuestaoController extends Controller
      */
     public function create()
     {
-        return view('questao.create');
+
+        $questionarios = Questionario::all();
+
+        return view('questao.create',compact('questionarios'));
         
     }
 
@@ -39,7 +45,7 @@ class QuestaoController extends Controller
     {
         $data = $request->all();
 
-        $data['questionario_id'] = 1;
+
 
         dd(Questao::create($data));
 
@@ -80,7 +86,7 @@ class QuestaoController extends Controller
     {
         $data = $request->all();
         $questoes = Questao::findOrFail($id);
-        dd($questoes->update($data));
+        $questoes->update($data);
     }
 
     /**
