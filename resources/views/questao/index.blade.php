@@ -54,4 +54,5 @@
         @endforelse
         </tbody>
     </table>
+    {{$questao->links()}}
 @endsection

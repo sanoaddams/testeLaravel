@@ -28,6 +28,7 @@
                 <td>{{date('d/m/Y H:i:s',strtotime($q->created_at))}}</td>
                 <td>
                     <div class="btn-group">
+                        <a href="" class="btn btn-sm btn-success">Visualizar</a>
                         <a href="{{route('questionarios.edit',['questionario' => $q->id])}}" class="btn btn-sm btn-primary">Editar</a>
                         <form action="{{route('questionarios.destroy',['questionario'=>$q->id])}}" method="POST">
                             @csrf
@@ -45,4 +46,5 @@
             @endforelse
         </tbody>
     </table>
+    {{$questionario->links()}}
     @endsection
