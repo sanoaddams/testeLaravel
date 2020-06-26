@@ -14,7 +14,7 @@
     <nav class="navbar navbar-expanded-lg navbar-light bg-light">   </nav>
     <a href="" class="navbar-brand">Teste Laravel</a>
     <button class="navbar-toggler"><span class="navbar-toggler-icon"></span></button>
-    <nav class="collapse navbar-collapse">
+    <nav class="collapse navbar-collphpapse">
         <ul class="navbar-nav">
             <li class="navbar-item active">
                 <a href="{{route('questionarios.index')}}" class="nav-link">Questionario</a>

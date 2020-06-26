@@ -10,4 +10,9 @@ class Questionario extends Model
         'nome',
         'pontuacao'
     ];
+
+    public function questao()
+    {
+        return $this->hasMany(Questao::class);
+    }
 }

@@ -3,9 +3,9 @@
 
     <div class="row">
         <div class="col-sm-12">
-            <a href="{{route('questionarios.create')}}" class="btn btn-success float-right">Cadastra Questionario</a>
+            <a href="{{route('questionarios.create')}}" class="btn btn-success float-right">Cadastrar Questionario</a>
             <a href="{{route('questoes.index')}}" class="btn btn-primary float-right">Questões</a>
-            <h2>Questionarios Laravel</h2>
+            <h2>Questionários Laravel</h2>
             <div class="clear-fix"></div>
         </div>
     </div>
@@ -13,7 +13,7 @@
         <thead>
         <tr>
             <th>#</th>
-            <th>Titulo do Questionário</th>
+            <th>Título do Questionário</th>
             <th>Pontuação</th>
             <th>Criado em</th>
             <th>Ações</th>
@@ -28,7 +28,7 @@
                 <td>{{date('d/m/Y H:i:s',strtotime($q->created_at))}}</td>
                 <td>
                     <div class="btn-group">
-                        <a href="" class="btn btn-sm btn-success">Visualizar</a>
+                        <a href="{{route('questionarios.show', ['questionario'=>$q->id])}}" class="btn btn-sm btn-success">Visualizar</a>
                         <a href="{{route('questionarios.edit',['questionario' => $q->id])}}" class="btn btn-sm btn-primary">Editar</a>
                         <form action="{{route('questionarios.destroy',['questionario'=>$q->id])}}" method="POST">
                             @csrf

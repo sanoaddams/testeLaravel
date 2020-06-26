@@ -16,8 +16,7 @@ class QuestionarioController extends Controller
      */
     public function index()
     {
-        $questionario = Questionario::paginate(3);
-        return view('questionarios.index')->withQuestionario($questionario);
+        return view('questionarios.index')->withQuestionario(Questionario::paginate(3));
     }
 
     /**
@@ -40,9 +39,11 @@ class QuestionarioController extends Controller
     {
         $data = $request->all();
         
-        dd(Questionario::create($data));
+        Questionario::create($data);
 
-        return back();
+        flash('Questionário cadastrado com sucesso!')->success();
+
+        return redirect()->route('questionarios.index');
     }
 
     /**
@@ -53,7 +54,12 @@ class QuestionarioController extends Controller
      */
     public function show($id)
     {
-        dd(Questionario::findOrFail($id));
+        //dd(Questionario::findOrFail($id));
+        $questionario = Questionario::findOrFail($id);
+        
+        $data = $questionario->questao;
+
+        return view('questionarios.show')->withQuestionario($data);
     }
 
     /**
@@ -82,7 +88,11 @@ class QuestionarioController extends Controller
        
        $questionario = Questionario::findOrFail($id);
 
-       dd($questionario->update($data));
+       $questionario->update($data);
+       
+       flash('Questionário atualizado com sucesso!')->success();
+
+       return redirect()->route('questionarios.index');
     }
 
     /**
@@ -95,6 +105,10 @@ class QuestionarioController extends Controller
     {
         $questionario = Questionario::findOrFail($id);
 
-        dd($questionario->delete());
+        $questionario->delete();
+
+        flash('Questionário excluído com sucesso!')->success();
+
+        return redirect()->route('questionarios.index');
     }
 }

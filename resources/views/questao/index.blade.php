@@ -3,7 +3,7 @@
 
     <div class="row">
         <div class="col-sm-12">
-            <a href="{{route('questoes.create')}}" class="btn btn-success float-right">Cadastra Questões</a>
+            <a href="{{route('questoes.create')}}" class="btn btn-success float-right">Cadastrar Questões</a>
             <a href="{{route('questionarios.index')}}" class="btn btn-primary float-right">Voltar</a>
             <h2>Questões Laravel</h2>
             <div class="clear-fix"></div>
@@ -13,7 +13,8 @@
         <thead>
         <tr>
             <th>#</th>
-            <th>Enuncia da Questão</th>
+            <th>Enunciado da Questão</th>
+            <th>Título do Questionário</th>
             <th>Resposta A</th>
             <th>Resposta B</th>
             <th>Resposta C</th>
@@ -28,6 +29,7 @@
             <tr>
                 <td>{{$q->id}}</td>
                 <td>{{$q->enunciado}}</td>
+                <td>{{$q->questionario->nome}}</td>
                 <td>{{$q->respostaA}}</td>
                 <td>{{$q->respostaB}}</td>
                 <td>{{$q->respostaC}}</td>

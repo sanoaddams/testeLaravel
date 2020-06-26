@@ -17,8 +17,8 @@ class QuestaoController extends Controller
     public function index()
     {
         //dd(Questao::all());
-        $questao = Questao::paginate(10);
-        return view('questao.index')->withQuestao($questao);
+               
+        return view('questao.index')->withQuestao(Questao::paginate(10));
     }
 
     /**
@@ -45,11 +45,11 @@ class QuestaoController extends Controller
     {
         $data = $request->all();
 
+        Questao::create($data);
 
+        flash('Questão cadastrada com sucesso!')->success();
 
-        dd(Questao::create($data));
-
-        return back();
+        return redirect()->route('questoes.index');
     }
 
     /**
@@ -60,7 +60,7 @@ class QuestaoController extends Controller
      */
     public function show($id)
     {
-        dd(Questao::findOrFail($id));
+        Questao::findOrFail($id);
     }
 
     /**
@@ -87,6 +87,8 @@ class QuestaoController extends Controller
         $data = $request->all();
         $questoes = Questao::findOrFail($id);
         $questoes->update($data);
+        flash('Questão atualizada com sucesso!')->success();
+        return redirect()->route('questoes.index');
     }
 
     /**
@@ -98,6 +100,8 @@ class QuestaoController extends Controller
     public function destroy($id)
     {
         $questoes = Questao::findOrFail($id);
-        dd($questoes->delete());
+        $questoes->delete();
+        flash('Questão excluída com sucesso!')->success();
+        return redirect()->route('questoes.index');
     }
 }
