@@ -19,8 +19,17 @@ Route::get('/', function () {
 
 Route::prefix('admin')->namespace('Admin')->group(function(){
 
-    Route::resource('questionarios', 'QuestionarioController');
-    Route::resource('questoes', 'QuestaoController');
+    Route::resource('questionarios', 'QuestionarioController')->middleware('auth');
+    Route::resource('questoes', 'QuestaoController')->middleware('auth');
     
 });
 
+//Auth::routes();
+
+//Route::get('/home', 'HomeController@index')->name('home');
+
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

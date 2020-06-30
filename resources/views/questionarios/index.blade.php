@@ -3,8 +3,8 @@
 
     <div class="row">
         <div class="col-sm-12">
-            <a href="{{route('questionarios.create')}}" class="btn btn-success float-right">Cadastrar Questionario</a>
-            <a href="{{route('questoes.index')}}" class="btn btn-primary float-right">Questões</a>
+            <a href="{{route('questionarios.create')}}" class="btn btn-success float-right">Cadastrar Questionário</a>
+            <a href="{{route('home')}}" class="btn btn-primary float-right">Voltar</a>
             <h2>Questionários Laravel</h2>
             <div class="clear-fix"></div>
         </div>
