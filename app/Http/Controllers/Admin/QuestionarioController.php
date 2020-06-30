@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 use App\Questionario;
+use App\User;
 
 class QuestionarioController extends Controller
 {
@@ -38,8 +40,12 @@ class QuestionarioController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+
+        $user = Auth::user();
         
-        Questionario::create($data);
+        //Questionario::create($data);
+
+        $questionario = $user->questionarios()->create($data);
 
         flash('Questionário cadastrado com sucesso!')->success();
 

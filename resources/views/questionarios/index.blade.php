@@ -14,6 +14,7 @@
         <tr>
             <th>#</th>
             <th>Título do Questionário</th>
+            <th>Autor</th>
             <th>Pontuação</th>
             <th>Criado em</th>
             <th>Ações</th>
@@ -24,6 +25,7 @@
             <tr>
                 <td>{{$q->id}}</td>
                 <td>{{$q->nome}}</td>
+                <td>{{$q->user->name}}</td>
                 <td>{{$q->pontuacao}}</td>
                 <td>{{date('d/m/Y H:i:s',strtotime($q->created_at))}}</td>
                 <td>
