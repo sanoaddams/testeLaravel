@@ -16,11 +16,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/responder', function () {
+    return view('responder');
+});
 
 Route::prefix('admin')->namespace('Admin')->group(function(){
 
     Route::resource('questionarios', 'QuestionarioController')->middleware('auth');
     Route::resource('questoes', 'QuestaoController')->middleware('auth');
+    Route::resource('responder', 'ResponderController')->middleware('auth');
+    Route::POST('responder/{id}', 'ResponderController@resposta')->name('resposta')->middleware('auth');
     
 });
 

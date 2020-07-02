@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+@Auth
 
     <div class="row">
         <div class="col-sm-12">
@@ -30,7 +31,10 @@
                 <td>{{date('d/m/Y H:i:s',strtotime($q->created_at))}}</td>
                 <td>
                     <div class="btn-group">
+                        @if($q->user->id != Auth::user()->id)
                         <a href="{{route('questionarios.show', ['questionario'=>$q->id])}}" class="btn btn-sm btn-success">Visualizar</a>
+                        <a href="{{route('responder.show',['responder' =>$q->id])}}" class="btn btn-sm btn-danger">Responder</a>
+                        @elseif($q->user->id === Auth::user()->id)
                         <a href="{{route('questionarios.edit',['questionario' => $q->id])}}" class="btn btn-sm btn-primary">Editar</a>
                         <form action="{{route('questionarios.destroy',['questionario'=>$q->id])}}" method="POST">
                             @csrf
@@ -38,6 +42,7 @@
                             <button class="btn btn-sm btn-danger form-control">Remover</button>
 
                         </form>
+                            @endif
                     </div>
                 </td>
             </tr>
@@ -49,4 +54,5 @@
         </tbody>
     </table>
     {{$questionario->links()}}
+    @endauth
     @endsection

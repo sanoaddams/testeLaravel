@@ -3,13 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Questao;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-
 use App\Questionario;
-use App\User;
 
-class QuestionarioController extends Controller
+class ResponderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +16,8 @@ class QuestionarioController extends Controller
      */
     public function index()
     {
-        return view('questionarios.index')->withQuestionario(Questionario::paginate(5));
+        
+        return view('responder.index');
     }
 
     /**
@@ -28,7 +27,7 @@ class QuestionarioController extends Controller
      */
     public function create()
     {
-        return view('questionarios.create');
+
     }
 
     /**
@@ -39,17 +38,7 @@ class QuestionarioController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-
-        $user = Auth::user();
-        
-        //Questionario::create($data);
-
-        $questionario = $user->questionarios()->create($data);
-
-        flash('Questionário cadastrado com sucesso!')->success();
-
-        return redirect()->route('questionarios.index');
+        //
     }
 
     /**
@@ -58,14 +47,9 @@ class QuestionarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Questionario $responder)
     {
-        //dd(Questionario::findOrFail($id));
-        $questionario = Questionario::findOrFail($id);
-        
-        $data = $questionario->questao;
-
-        return view('questionarios.show')->withQuestionario($data);
+        return view('responder.index')->withQuestionario($responder);
     }
 
     /**
@@ -76,9 +60,7 @@ class QuestionarioController extends Controller
      */
     public function edit($id)
     {
-        $questionario = Questionario::findOrFail($id);
-
-        return view('questionarios.edit')->withQuestionario($questionario);
+        //
     }
 
     /**
@@ -90,15 +72,7 @@ class QuestionarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = $request->all();
-       
-       $questionario = Questionario::findOrFail($id);
-
-       $questionario->update($data);
-       
-       flash('Questionário atualizado com sucesso!')->success();
-
-       return redirect()->route('questionarios.index');
+        //
     }
 
     /**
@@ -109,12 +83,48 @@ class QuestionarioController extends Controller
      */
     public function destroy($id)
     {
-        $questionario = Questionario::findOrFail($id);
+        //
+    }
+    public function resposta(Request $request,$id)
+    {        
+        
+       
+        $questionario = Questionario::find($id);
+        $pontuacao = $questionario ->pontuacao;
+       
+        $num = 0;
+      
+        $valorQuestao = 4.5;
+        $nota = 0;
+        
+        for($i=0;$i < $request['num'];$i++)
+        {
+             
+            
+            $questao = $request['questao'.$num];
+            
+            $correta = $request['correta'.$num];
+            if($questao == $correta)
+            {
+                $nota = $nota + $valorQuestao;
+            }else{
+                $nota -=$valorQuestao;
+            }
+        }
 
-        $questionario->delete();
+   
 
-        flash('Questionário excluído com sucesso!')->success();
+        
+        if($nota >= $pontuacao)
+        {
+            return redirect()->back()->with('Aprovado','Parabens,você atingiu a pontuação nescessaria');
+          
+        }
+        else
+        {
+            return redirect()->back()->with('Reprovado','Parabens,você atingiu a pontuação nescessaria');
+          
+        }
 
-        return redirect()->route('questionarios.index');
     }
 }
